@@ -1,0 +1,61 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: ai-application-student-business
+  datasource:
+    # 本机 H2 2.3.232 在文件库已存在时无法使用 AUTO_SERVER（重启即报
+    # Feature not supported: AUTO_SERVER=TRUE && (readOnly ...)），故使用普通文件库模式。
+    # 另：沙箱环境会让 H2 把已存在的库文件判定为只读，启动时由
+    # ReadOnlyDatabaseRepairListener 备份旧库并重建（演示数据由 seeder 自动导入）。
+    url: jdbc:h2:file:./data/student-project
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+  jackson:
+    time-zone: Asia/Shanghai
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+ai:
+  service:
+    base-url: http://localhost:8000
+    connect-timeout-ms: 3000
+    read-timeout-ms: 180000
+
+auth:
+  token-secret: AmsLearn-Demo-Secret-2026-ChangeMe
+  token-ttl-hours: 168
+
+app:
+  demo-data: true
+  # v1.4 新注册学生默认班级（不存在时回退到第一个班级）
+  default-class-id: C-GS-01
+  # v1.2 用户 AI Key 的 AES/GCM 密钥（开发默认值，生产需覆盖）
+  crypto:
+    secret: AmsLearn-Demo-AES-Secret-2026-ChangeMe
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+logging:
+  level:
+    root: INFO
+    com.dongchen.campus: INFO
+    org.hibernate.SQL: WARN
+    org.springframework.web: INFO

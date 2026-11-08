@@ -1,0 +1,36 @@
+server:
+  port: 0
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:amslearn-test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  jackson:
+    time-zone: Asia/Shanghai
+  h2:
+    console:
+      enabled: false
+
+ai:
+  service:
+    base-url: http://localhost:18000
+    connect-timeout-ms: 1000
+    read-timeout-ms: 5000
+
+auth:
+  token-secret: AmsLearn-Test-Secret-2026
+  token-ttl-hours: 1
+
+app:
+  demo-data: true
+
+logging:
+  level:
+    root: WARN
+    com.dongchen.campus: INFO

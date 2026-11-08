@@ -1,0 +1,41 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Java
+business-service/target/
+business-service/data/
+*.log
+
+# Python
+ai-service/.venv/
+ai-service/.env
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# 个人参考材料（本地保存，不入库）
+对话历史.txt
+docs/前情提要/
+# 提交材料：小组信息、模板、提交文档（个人材料，整体屏蔽；运行截图已移至 docs/运行截图/ 入库）
+提交材料/
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# 本地临时产物
+.tmp/
+.tmp-pip-test/
+.npm-cache/
+ai-service/data/
+/data/
+
+# 知识库上传件（运行时生成，不入库）
+ai-service/knowledge/uploads/
+
+
